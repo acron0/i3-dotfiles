@@ -180,7 +180,7 @@ client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
 
 client.background       #ffffff
 
-assign [class="emacs"] $tag1
+assign [class="[eE]macs"] $tag1
 assign [class="google-chrome"] $tag3
 
 exec i3-msg 'exec emacs; workspace $tag2; exec i3-sensible-terminal; exec google-chrome; workspace $tag1;'
