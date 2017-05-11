@@ -87,10 +87,14 @@ bindsym $mod+a focus parent
 # focus the child container
 #bindsym $mod+d focus child
 
+bindsym $mod+o move workspace to output left
+bindsym $mod+p move workspace to output right
+
 # names
 set $tag1 "1: emacs"
 set $tag2 "2: term"
 set $tag3 "3: www"
+set $tag4 "4: slack"
 
 # switch to workspace
 bindsym $mod+1 workspace $tag1
@@ -108,7 +112,7 @@ bindsym $mod+0 workspace 10
 bindsym $mod+Shift+1 move container to workspace $tag1
 bindsym $mod+Shift+2 move container to workspace $tag3
 bindsym $mod+Shift+3 move container to workspace $tag3
-bindsym $mod+Shift+4 move container to workspace 4
+bindsym $mod+Shift+4 move container to workspace $tag4
 bindsym $mod+Shift+5 move container to workspace 5
 bindsym $mod+Shift+6 move container to workspace 6
 bindsym $mod+Shift+7 move container to workspace 7
@@ -181,6 +185,8 @@ client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
 client.background       #ffffff
 
 assign [class="[eE]macs"] $tag1
-assign [class="google-chrome"] $tag3
+assign [class="[cC]hrom.*"] $tag3
+assign [class="Slack.*"] $tag4
 
-exec i3-msg 'exec emacs; workspace $tag2; exec i3-sensible-terminal; exec google-chrome; workspace $tag1;'
+exec i3-msg 'exec emacs; workspace $tag2; exec i3-sensible-terminal; exec google-chrome-stable; workspace $tag1; exec slack;'
+exec feh --bg-max ~/Pictures/jakub-rozalski-wolf-brides.jpg
