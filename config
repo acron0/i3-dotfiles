@@ -95,13 +95,14 @@ set $tag1 "1: emacs"
 set $tag2 "2: term"
 set $tag3 "3: www"
 set $tag4 "4: slack"
+set $tag5 "5: spotify"
 
 # switch to workspace
 bindsym $mod+1 workspace $tag1
 bindsym $mod+2 workspace $tag2
 bindsym $mod+3 workspace $tag3
-bindsym $mod+4 workspace 4
-bindsym $mod+5 workspace 5
+bindsym $mod+4 workspace $tag4
+bindsym $mod+5 workspace $tag5
 bindsym $mod+6 workspace 6
 bindsym $mod+7 workspace 7
 bindsym $mod+8 workspace 8
@@ -110,10 +111,10 @@ bindsym $mod+0 workspace 10
 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace $tag1
-bindsym $mod+Shift+2 move container to workspace $tag3
+bindsym $mod+Shift+2 move container to workspace $tag2
 bindsym $mod+Shift+3 move container to workspace $tag3
 bindsym $mod+Shift+4 move container to workspace $tag4
-bindsym $mod+Shift+5 move container to workspace 5
+bindsym $mod+Shift+5 move container to workspace $tag5
 bindsym $mod+Shift+6 move container to workspace 6
 bindsym $mod+Shift+7 move container to workspace 7
 bindsym $mod+Shift+8 move container to workspace 8
@@ -171,7 +172,7 @@ bar {
 		urgent_workspace   #aa0000 #990000 #ffffff
 	}
         position top
-        status_command i3status -c ~/.i3/i3status.conf
+        status_command i3status -c ~/.config/i3/i3status.conf | ~/.config/i3/contrib/wrapper.py
         
 }
 
@@ -187,6 +188,8 @@ client.background       #ffffff
 assign [class="[eE]macs"] $tag1
 assign [class="[cC]hrom.*"] $tag3
 assign [class="Slack.*"] $tag4
+assign [class="Spotify"] $tag5
 
 exec i3-msg 'exec emacs; workspace $tag2; exec i3-sensible-terminal; exec google-chrome-stable; workspace $tag1; exec slack;'
-exec feh --bg-max ~/Pictures/jakub-rozalski-wolf-brides.jpg
+exec --no-startup-id nm-applet
+exec feh --bg-fill ~/Pictures/findara-mcavinchey-dragon-final.jpg
