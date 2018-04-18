@@ -74,7 +74,7 @@ if __name__ == '__main__':
         j = json.loads(line)
         # insert information into the start of the json, but could be anywhere
         mmol, color = get_bgmmol()
-        j.insert(0, {'full_text' : '%s' % mmol,
+        j.insert(0, {'full_text' : '🌢 %s' % mmol,
                      'name' : 'bgmmol',
                      'color' : color})
         # and echo back new encoded json
