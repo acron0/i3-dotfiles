@@ -19,7 +19,7 @@ set $sup Mod1
 # clear in small sizes. However, if you need a lot of unicode glyphs or
 # right-to-left text rendering, you should instead use pango for rendering and
 # chose a FreeType font, such as:
-font pango:DejaVu Sans Mono 10
+font pango:Source Sans Pro-10 10
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -159,21 +159,25 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 bar {
+        i3bar_command i3bar -t
+        font pango:Source Sans Pro-10 10
+	status_command i3blocks -c ~/.config/i3/i3blocks.conf
         colors {
 		# Whole color settings
-		background #000000
+		background #111111
 		statusline #ffffff
-		separator  #adff2f
+		separator  #888888
 
 		# Type             border  background font
-		focused_workspace  #000000 #adff2f #00000
-		active_workspace   #333333 #5f676a #ffffff
-		inactive_workspace #333333 #222222 #888888
-		urgent_workspace   #aa0000 #990000 #ffffff
+		focused_workspace  #000000 #c00000 #ffffff
+		active_workspace   #000000 #5f676a #ffffff
+		inactive_workspace #000000 #222222 #bbbbbb
+		urgent_workspace   #000000 #0000aa #ffffff
 	}
+        separator_symbol "∤"
         strip_workspace_numbers yes
         position top
-        status_command i3status -c ~/.config/i3/i3status.conf | ~/.config/i3/contrib/wrapper.py
+        #status_command i3status -c ~/.config/i3/i3status.conf | ~/.config/i3/contrib/wrapper.py
         
 }
 
@@ -183,8 +187,11 @@ client.focused_inactive #333333 #5f676a #ffffff #484e50   #5f676a
 client.unfocused        #333333 #222222 #888888 #292d2e   #222222
 client.urgent           #2f343a #900000 #ffffff #900000   #900000
 client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
-
 client.background       #ffffff
+
+for_window [class="^.*"] border pixel 0
+gaps inner 0
+gaps outer 0
 
 assign [class="[eE]macs"] $tag1
 assign [class="[cC]hrom.*"] $tag3
@@ -193,4 +200,4 @@ assign [class="Spotify"] $tag5
 
 exec i3-msg 'exec emacs; workspace $tag2; exec i3-sensible-terminal; workspace $tag3; exec google-chrome-stable; workspace $tag4; exec slack; workspace $tag5; exec spotify'
 exec --no-startup-id nm-applet
-exec feh --bg-fill ~/Pictures/findara-mcavinchey-dragon-final.jpg
+exec feh --bg-fill ~/Pictures/bg.jpg
