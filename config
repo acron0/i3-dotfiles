@@ -158,6 +158,11 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
+# media controls
+bindsym XF86AudioMute exec --no-startup-id amixer -D pulse set Master 1+ toggle
+bindsym XF86AudioRaiseVolume exec "amixer set Master 5%+"
+bindsym XF86AudioLowerVolume exec "amixer set Master 5%-"
+
 bar {
         i3bar_command i3bar -t
         font pango:GohuFont Nerd Font 12
