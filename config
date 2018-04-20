@@ -160,7 +160,7 @@ bindsym $mod+r mode "resize"
 
 bar {
         i3bar_command i3bar -t
-        font pango:Source Sans Pro-10 10
+        font pango:GohuFont Nerd Font 12
 	status_command i3blocks -c ~/.config/i3/i3blocks.conf
         colors {
 		# Whole color settings
@@ -198,6 +198,6 @@ assign [class="[cC]hrom.*"] $tag3
 assign [class="Slack.*"] $tag4
 assign [class="Spotify"] $tag5
 
-exec i3-msg 'exec emacs; workspace $tag2; exec i3-sensible-terminal; workspace $tag3; exec google-chrome-stable; workspace $tag4; exec slack; workspace $tag5; exec spotify'
+exec i3-msg 'exec emacs; workspace $tag2; exec i3-sensible-terminal; workspace $tag3; exec chromium-browser; workspace $tag4; exec slack; workspace $tag5; exec spotify'
 exec --no-startup-id nm-applet
 exec feh --bg-fill ~/Pictures/bg.jpg
