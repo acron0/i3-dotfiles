@@ -160,12 +160,12 @@ bindsym $mod+r mode "resize"
 
 # media controls
 bindsym XF86AudioMute exec --no-startup-id amixer -D pulse set Master 1+ toggle
-bindsym XF86AudioRaiseVolume exec "amixer set Master 5%+"
-bindsym XF86AudioLowerVolume exec "amixer set Master 5%-"
+bindsym XF86AudioRaiseVolume exec "~/.config/i3/scripts/vol-diff 5%+"
+bindsym XF86AudioLowerVolume exec "~/.config/i3/scripts/vol-diff 5%-"
 
 bar {
         i3bar_command i3bar -t
-        font pango:GohuFont Nerd Font 12
+        font pango:GohuFont Nerd Font 11
 	status_command i3blocks -c ~/.config/i3/i3blocks.conf
         colors {
 		# Whole color settings
@@ -187,12 +187,15 @@ bar {
 }
 
 # class                 border  backgr. text    indicator child_border
-client.focused          #333333 #812FFF #ffffff #000000   #333333
-client.focused_inactive #333333 #5f676a #ffffff #484e50   #5f676a
-client.unfocused        #333333 #222222 #888888 #292d2e   #222222
-client.urgent           #2f343a #900000 #ffffff #900000   #900000
-client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
-client.background       #ffffff
+client.focused          #000000 #000000 #ffffff #000000   #000000
+client.focused_inactive #000000 #000000 #ffffff #000000   #000000
+client.unfocused        #000000 #000000 #ffffff #000000   #000000
+client.urgent           #000000 #000000 #ffffff #000000   #000000
+client.placeholder      #000000 #000000 #ffffff #000000   #000000
+client.background       #000000
+default_border none
+default_floating_border none
+hide_edge_borders both
 
 for_window [class="^.*"] border pixel 0
 gaps inner 0
