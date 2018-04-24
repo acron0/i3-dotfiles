@@ -162,10 +162,12 @@ bindsym $mod+r mode "resize"
 bindsym XF86AudioMute exec --no-startup-id amixer -D pulse set Master 1+ toggle
 bindsym XF86AudioRaiseVolume exec "~/.config/i3/scripts/vol-diff 5%+"
 bindsym XF86AudioLowerVolume exec "~/.config/i3/scripts/vol-diff 5%-"
+bindsym XF86MonBrightnessUp exec "~/.config/i3/scripts/brightness up"
+bindsym XF86MonBrightnessDown exec "~/.config/i3/scripts/brightness down"
 
 bar {
         i3bar_command i3bar -t
-        font pango:GohuFont Nerd Font 11
+        font pango:GohuFont Nerd Font 10
 	status_command i3blocks -c ~/.config/i3/i3blocks.conf
         colors {
 		# Whole color settings
