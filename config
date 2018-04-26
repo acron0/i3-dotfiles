@@ -30,21 +30,18 @@ bindsym $mod+Return exec i3-sensible-terminal
 # kill focused window
 bindsym $mod+Shift+q kill
 
-# lock
-bindsym $mod+l exec --no-startup-id i3lock -b --image ~/Pictures/backgrounds/1.png
-
 # start dmenu (a program launcher)
-bindsym $mod+d exec "rofi -show-icons -show combi"
+bindsym $mod+d exec dmenu_run
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
 # bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 
 # change focus
-#bindsym $mod+j focus left
-#bindsym $mod+k focus down
-#bindsym $mod+l focus up
-#bindsym $mod+semicolon focus right
+bindsym $mod+j focus left
+bindsym $mod+k focus down
+bindsym $mod+l focus up
+bindsym $mod+semicolon focus right
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Left focus left
@@ -53,10 +50,10 @@ bindsym $mod+Up focus up
 bindsym $mod+Right focus right
 
 # move focused window
-#bindsym $mod+Shift+j move left
-#bindsym $mod+Shift+k move down
-#bindsym $mod+Shift+l move up
-#bindsym $mod+Shift+semicolon move right
+bindsym $mod+Shift+j move left
+bindsym $mod+Shift+k move down
+bindsym $mod+Shift+l move up
+bindsym $mod+Shift+semicolon move right
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Shift+Left move left
@@ -94,18 +91,18 @@ bindsym $mod+o move workspace to output left
 bindsym $mod+p move workspace to output right
 
 # names
-set $tag1 "1: emacs"
-set $tag2 "2: term"
-set $tag3 "3: www"
-set $tag4 "4: slack"
-# set $tag5 "spotify"
+set $tag1 "emacs"
+set $tag2 "term"
+set $tag3 "www"
+set $tag4 "slack"
+set $tag5 "spotify"
 
 # switch to workspace
 bindsym $mod+1 workspace $tag1
 bindsym $mod+2 workspace $tag2
 bindsym $mod+3 workspace $tag3
 bindsym $mod+4 workspace $tag4
-bindsym $mod+5 workspace 5
+bindsym $mod+5 workspace $tag5
 bindsym $mod+6 workspace 6
 bindsym $mod+7 workspace 7
 bindsym $mod+8 workspace 8
@@ -117,7 +114,7 @@ bindsym $mod+Shift+1 move container to workspace $tag1
 bindsym $mod+Shift+2 move container to workspace $tag2
 bindsym $mod+Shift+3 move container to workspace $tag3
 bindsym $mod+Shift+4 move container to workspace $tag4
-bindsym $mod+Shift+5 move container to workspace 5
+bindsym $mod+Shift+5 move container to workspace $tag5
 bindsym $mod+Shift+6 move container to workspace 6
 bindsym $mod+Shift+7 move container to workspace 7
 bindsym $mod+Shift+8 move container to workspace 8
@@ -143,10 +140,10 @@ mode "resize" {
         # Pressing right will grow the window’s width.
         # Pressing up will shrink the window’s height.
         # Pressing down will grow the window’s height.
-        #bindsym j resize shrink width 10 px or 10 ppt
-        #bindsym k resize grow height 10 px or 10 ppt
-        #bindsym l resize shrink height 10 px or 10 ppt
-        #bindsym semicolon resize grow width 10 px or 10 ppt
+        bindsym j resize shrink width 10 px or 10 ppt
+        bindsym k resize grow height 10 px or 10 ppt
+        bindsym l resize shrink height 10 px or 10 ppt
+        bindsym semicolon resize grow width 10 px or 10 ppt
 
         # same bindings, but for the arrow keys
         bindsym Left resize shrink width 10 px or 10 ppt
@@ -168,29 +165,30 @@ bindsym XF86AudioLowerVolume exec "~/.config/i3/scripts/vol-diff 5%-"
 bindsym XF86MonBrightnessUp exec "~/.config/i3/scripts/brightness up"
 bindsym XF86MonBrightnessDown exec "~/.config/i3/scripts/brightness down"
 
-# bar {
-#         i3bar_command i3bar -t
-#         font pango:GohuFont Nerd Font 10
-# 	status_command i3blocks -c ~/.config/i3/i3blocks.conf
-#         colors {
-# 		# Whole color settings
-# 		background #111111
-# 		statusline #ffffff
-# 		separator  #888888
+bar {
+        i3bar_command i3bar -t
+        font pango:GohuFont Nerd Font 10
+	status_command "sh ~/.config/i3/random_colour.sh; i3blocks -c ~/.config/i3/i3blocks.conf"
+        colors {
+		# Whole color settings
+		background #111111
+		statusline #ffffff
+		separator  #888888
 
-# 		# Type             border  background font
-# 		focused_workspace  #000000 #c00000 #ffffff
-# 		active_workspace   #000000 #5f676a #ffffff
-# 		inactive_workspace #000000 #222222 #bbbbbb
-# 		urgent_workspace   #000000 #0000aa #ffffff
-# 	}
-#         separator_symbol "∤"
-#         strip_workspace_numbers no
-#         position top
-#         #status_command i3status -c ~/.config/i3/i3status.conf | ~/.config/i3/contrib/wrapper.py       
-# }
+		# Type             border  background font
+		focused_workspace  #000000 #c00000 #ffffff
+		active_workspace   #000000 #5f676a #ffffff
+		inactive_workspace #000000 #222222 #bbbbbb
+		urgent_workspace   #000000 #0000aa #ffffff
+	}
+        separator_symbol "∤"
+        strip_workspace_numbers yes
+        position top
+        #status_command i3status -c ~/.config/i3/i3status.conf | ~/.config/i3/contrib/wrapper.py
+        
+}
 
-# class                 border  backgr. text    indicator hild_border
+# class                 border  backgr. text    indicator child_border
 client.focused          #000000 #000000 #ffffff #000000   #000000
 client.focused_inactive #000000 #000000 #ffffff #000000   #000000
 client.unfocused        #000000 #000000 #ffffff #000000   #000000
@@ -202,16 +200,14 @@ default_floating_border none
 hide_edge_borders both
 
 for_window [class="^.*"] border pixel 0
-gaps inner 10
-gaps outer 10
+gaps inner 0
+gaps outer 0
 
 assign [class="[eE]macs"] $tag1
-assign [class="[gG]oog.*"] $tag3
+assign [class="[cC]hrom.*"] $tag3
 assign [class="Slack.*"] $tag4
-#assign [class="Spotify"] $tag5
+assign [class="Spotify"] $tag5
 
-exec i3-msg 'exec emacs; workspace $tag2; exec i3-sensible-terminal; workspace $tag3; exec google-chrome; workspace $tag4; exec slack;'
+exec i3-msg 'exec emacs; workspace $tag2; exec i3-sensible-terminal; workspace $tag3; exec chromium-browser; workspace $tag4; exec slack; workspace $tag5; exec spotify'
 exec --no-startup-id nm-applet
-exec feh --bg-fill ~/Pictures/backgrounds/1.jpg
-exec --no-startup-id compton
-exec_always --no-startup-id $HOME/.config/polybar/launch.sh
+exec feh --bg-fill ~/Pictures/bg.jpg

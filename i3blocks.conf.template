@@ -14,7 +14,7 @@ markup=pango
 
 [spotify-icon]
 full_text=
-color=#7CFC00
+color={{COLOUR}}
 
 [spotify]
 command=spotifycli --status
@@ -25,7 +25,7 @@ color=#bbbbbb
 
 [blood-icon]
 full_text=
-color=#7CFC00
+color={{COLOUR}}
 
 [blood]
 command=bgmmol
@@ -36,7 +36,7 @@ color=#bbbbbb
 
 [disk-icon]
 full_text=
-color=#7CFC00
+color={{COLOUR}}
 
 [disk-home]
 command=/usr/share/i3blocks/disk /
@@ -47,7 +47,7 @@ color=#bbbbbb
 
 [temp-icon]
 full_text=
-color=#7CFC00
+color={{COLOUR}}
 
 [temp]
 command=/usr/share/i3blocks/temperature
@@ -58,7 +58,7 @@ color=#bbbbbb
 
 [battery-icon]
 full_text=
-color=#7CFC00
+color={{COLOUR}}
 
 [battery]
 command=/usr/share/i3blocks/battery
@@ -69,7 +69,7 @@ color=#bbbbbb
 
 [iface-icon]
 full_text=
-color=#7CFC00
+color={{COLOUR}}
 
 [ssid]
 command=echo "$(iw dev | grep ssid | cut -d " " -f 2-)"
@@ -92,7 +92,7 @@ color=#bbbbbb
 
 [memory-icon]
 full_text=
-color=#7CFC00
+color={{COLOUR}}
 
 [memory]
 command=/usr/share/i3blocks/memory
@@ -103,7 +103,7 @@ color=#bbbbbb
 
 [cpu-icon]
 full_text=
-color=#7CFC00
+color={{COLOUR}}
 
 [cpu]
 command=/usr/share/i3blocks/cpu_usage
@@ -114,7 +114,7 @@ color=#bbbbbb
 
 [load-icon]
 full_text=
-color=#7CFC00
+color={{COLOUR}}
 
 [load]
 command=/usr/share/i3blocks/load_average
@@ -125,7 +125,7 @@ color=#bbbbbb
 
 [volume-icon]
 full_text=
-color=#7CFC00
+color={{COLOUR}}
 
 [volume]
 command=amixer -c 1 get 'Master' | tail -n1 | grep -Eo "[0-9]{1,3}%"
@@ -137,7 +137,7 @@ color=#bbbbbb
 
 [brightness-icon]
 full_text=
-color=#7CFC00
+color={{COLOUR}}
 
 [brightness]
 command=~/.config/i3/scripts/brightness
@@ -148,7 +148,7 @@ color=#bbbbbb
 
 [time-icon]
 full_text=
-color=#7CFC00
+color={{COLOUR}}
 
 [time]
 command=date '+%a %m-%d-%y %l:%M:%S %p'
