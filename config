@@ -91,11 +91,12 @@ bindsym $mod+o move workspace to output left
 bindsym $mod+p move workspace to output right
 
 # names
-set $tag1 "emacs"
+set $tag1 "code"
 set $tag2 "term"
 set $tag3 "www"
 set $tag4 "slack"
 set $tag5 "spotify"
+set $tag6 "notes"
 
 # switch to workspace
 bindsym $mod+1 workspace $tag1
@@ -200,14 +201,18 @@ default_floating_border none
 hide_edge_borders both
 
 for_window [class="^.*"] border pixel 0
-gaps inner 0
-gaps outer 0
+#gaps inner 0
+#gaps outer 0
 
-assign [class="[eE]macs"] $tag1
-assign [class="[cC]hrom.*"] $tag3
-assign [class="Slack.*"] $tag4
-assign [class="Spotify"] $tag5
+assign [class="[cC]ode"] $tag1
+assign [class="[fF]irefox.*"] $tag3
+assign [class="[sS]lack.*"] $tag4
+assign [class="[sS]potify"] $tag5
+assign [class="[oO]bsidian"] $tag6
 
-exec i3-msg 'exec emacs; workspace $tag2; exec i3-sensible-terminal; workspace $tag3; exec chromium-browser; workspace $tag4; exec slack; workspace $tag5; exec spotify'
+# to get active window class names
+# i3-msg -t get_tree | jq '.nodes[].nodes[].nodes[].nodes[].window_properties.class'
+
+exec i3-msg 'exec code; workspace $tag2; exec i3-sensible-terminal; workspace $tag3; exec firefox; workspace $tag4; exec slack; workspace $tag6; exec obsidian'
 exec --no-startup-id nm-applet
 exec feh --bg-fill ~/Pictures/bg.jpg

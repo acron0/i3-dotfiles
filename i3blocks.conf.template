@@ -12,25 +12,44 @@ markup=pango
 # interval=30
 # color=#1793D1
 
-[spotify-icon]
-full_text=
+#[spotify-icon]
+#full_text=
+#color={{COLOUR}}
+#
+#[spotify]
+#command=spotifycli --status
+#interval=5
+#color=#bbbbbb
+#
+[pomodoro-icon]
+full_text=
 color={{COLOUR}}
 
-[spotify]
-command=spotifycli --status
+[pomodoro]
+command=~/.config/i3/scripts/pomodoro
 interval=5
 color=#bbbbbb
 
 [separator]
 
-[blood-icon]
-full_text=
+[work-cpu-icon]
+full_text=
 color={{COLOUR}}
 
-[blood]
-command=bgmmol
-interval=30
+[work-cpu]
+label=work:
+command=~/.config/i3/scripts/work-cpu
+interval=10
 color=#bbbbbb
+
+#[blood-icon]
+#full_text=
+#color={{COLOUR}}
+
+#[blood]
+#command=bgmmol
+#interval=30
+#color=#bbbbbb
 
 [separator]
 
@@ -76,11 +95,11 @@ command=echo "$(iw dev | grep ssid | cut -d " " -f 2-)"
 color=#bbbbbb
 interval=5
 
-# [strength]
-# label=
-# command=~/.config/i3/scripts/wifi-strength
-# interval=10
-# color=#bbbbbb
+[strength]
+label=
+command=~/.config/i3/scripts/wifi-strength
+interval=10
+color=#bbbbbb
 
 [iface]
 label=
@@ -151,6 +170,6 @@ full_text=
 color={{COLOUR}}
 
 [time]
-command=date '+%a %m-%d-%y %l:%M:%S %p'
+command=date '+%a %d-%m-%y %l:%M:%S %p'
 interval=5
 color=#bbbbbb
