@@ -1,9 +1,34 @@
 #!/bin/bash
+
+# Parse arguments
+logfile=""
+while [[ $# -gt 0 ]]; do
+    case "$1" in
+        --log)
+            logfile="$2"
+            shift 2
+            ;;
+        *)
+            shift
+            ;;
+    esac
+done
+
 [[ -z "$HETZNER_API_KEY" ]] && HETZNER_API_KEY=$(grep 'HETZNER_API_KEY' ~/.profile | sed 's/.*=//')
 
 cpu=$(curl -s -H "Authorization: Bearer $HETZNER_API_KEY" \
   "https://api.hetzner.cloud/v1/servers/110490452/metrics?type=cpu&start=$(date -u -d '1 minute ago' +%Y-%m-%dT%H:%M:%SZ)&end=$(date -u +%Y-%m-%dT%H:%M:%SZ)" | \
   jq -r '.metrics.time_series.cpu.values[-1][1] | tonumber | . / 4 | floor')
+
+# Log to history file if --log was provided
+if [[ -n "$logfile" ]]; then
+    history=$(head -n 9 "$logfile" 2>/dev/null)
+    if [[ -n "$history" ]]; then
+        printf '%s\n%s\n' "$cpu" "$history" > "$logfile"
+    else
+        echo "$cpu" > "$logfile"
+    fi
+fi
 
 # Line 1: full_text
 echo "${cpu}%"

@@ -1,0 +1,7 @@
+#!/bin/sh
+OUT=$(amixer -c 1 get 'Master' | tail -n1)
+if echo "$OUT" | grep -q '\[off\]'; then
+    echo -X-
+else
+    echo "$OUT" | grep -Eo '[0-9]{1,3}%'
+fi

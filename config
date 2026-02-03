@@ -172,14 +172,14 @@ bar {
 	status_command "sh ~/.config/i3/random_colour.sh; i3blocks -c ~/.config/i3/i3blocks.conf"
         colors {
 		# Whole color settings
-		background #111111
+		background #092b1a
 		statusline #ffffff
 		separator  #888888
 
 		# Type             border  background font
 		focused_workspace  #000000 #c00000 #ffffff
-		active_workspace   #000000 #5f676a #ffffff
-		inactive_workspace #000000 #222222 #bbbbbb
+		active_workspace   #000000 #1c422a #ffffff
+		inactive_workspace #000000 #1c422a #bbbbbb
 		urgent_workspace   #000000 #0000aa #ffffff
 	}
         separator_symbol "∤"
@@ -201,8 +201,8 @@ default_floating_border none
 hide_edge_borders both
 
 for_window [class="^.*"] border pixel 0
-#gaps inner 0
-#gaps outer 0
+gaps inner 5
+gaps outer 5
 
 assign [class="[cC]ode"] $tag1
 assign [class="[fF]irefox.*"] $tag3
@@ -215,4 +215,5 @@ assign [class="[oO]bsidian"] $tag6
 
 exec i3-msg 'exec code; workspace $tag2; exec i3-sensible-terminal; workspace $tag3; exec firefox; workspace $tag4; exec slack; workspace $tag6; exec obsidian'
 exec --no-startup-id nm-applet
-exec feh --bg-fill ~/Pictures/bg.jpg
+exec --no-startup-id sh ~/.fehbg
+exec --no-startup-id compton

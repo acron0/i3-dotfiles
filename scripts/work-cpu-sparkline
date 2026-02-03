@@ -1,0 +1,27 @@
+#!/bin/bash
+
+# Exit if no argument
+[[ -z "$1" ]] && exit 0
+
+# Unicode block characters (index 0-7)
+blocks=(▁ ▂ ▃ ▄ ▅ ▆ ▇ █)
+
+# Read values into array (empty array if file doesn't exist)
+[[ -f "$1" ]] && mapfile -t values < "$1" || values=()
+
+# Pad with zeros to always have 10 values
+while ((${#values[@]} < 10)); do
+    values+=("0")
+done
+
+# Build sparkline (reverse order: oldest on left, newest on right)
+sparkline=""
+for ((i=${#values[@]}-1; i>=0; i--)); do
+    value="${values[i]}"
+    # Map 0-100 to index 0-7
+    index=$((value * 8 / 101))
+    sparkline+="${blocks[index]}"
+done
+
+# Output for i3blocks
+echo "$sparkline"
