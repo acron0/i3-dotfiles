@@ -38,12 +38,6 @@ bindsym $mod+d exec dmenu_run
 # bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 
 # change focus
-bindsym $mod+j focus left
-bindsym $mod+k focus down
-bindsym $mod+l focus up
-bindsym $mod+semicolon focus right
-
-# alternatively, you can use the cursor keys:
 bindsym $mod+Left focus left
 bindsym $mod+Down focus down
 bindsym $mod+Up focus up
@@ -213,7 +207,14 @@ assign [class="[oO]bsidian"] $tag6
 # to get active window class names
 # i3-msg -t get_tree | jq '.nodes[].nodes[].nodes[].nodes[].window_properties.class'
 
-exec i3-msg 'exec code; workspace $tag2; exec i3-sensible-terminal; workspace $tag3; exec firefox; workspace $tag4; exec slack; workspace $tag6; exec obsidian'
+exec i3-msg 'workspace $tag2; exec i3-sensible-terminal; workspace $tag3; exec firefox; workspace $tag4; exec slack; workspace $tag6; exec obsidian'
 exec --no-startup-id nm-applet
 exec --no-startup-id sh ~/.fehbg
 exec --no-startup-id compton
+exec --no-startup-id xset s off
+exec --no-startup-id xset -dpms
+exec --no-startup-id xset s noblank
+exec --no-startup-id xautolock -time 10 -locker 'i3lock -c 000000'
+
+bindsym $mod+l exec --no-startup-id i3lock -i /home/acron/Pictures/lock.png
+bindsym $mod+F12 exec ~/bin/fixscreen
